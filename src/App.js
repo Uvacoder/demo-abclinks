@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Avatar, Heading, Text } from "@chakra-ui/react";
+import { MainLayout, LinksLayout, ProfileLayout } from "./components/layout";
+import { profileInfo, links } from "./data";
+import { Link } from "./components/links";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainLayout>
+      {/* Profile Information */}
+      <ProfileLayout>
+        <Avatar src={profileInfo.photo} size="xl" />
+        <Heading>{profileInfo.name}</Heading>
+        <Text>{profileInfo.bio}</Text>
+      </ProfileLayout>
+
+      {/* Custom Links */}
+      <LinksLayout>
+        {links.map((l, i) => (
+          <Link key={i} site={l.site} link={l.link} color={l.color} />
+        ))}
+      </LinksLayout>
+    </MainLayout>
   );
 }
 
